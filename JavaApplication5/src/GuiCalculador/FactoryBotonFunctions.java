@@ -29,52 +29,68 @@ public class FactoryBotonFunctions {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String equation = Calculadora.pantalla;
-                        try {
-                            Calculadora.pantalla = Solver.Compute(equation) + "";
-
-                        } catch (Exception ex) {
-                            Calculadora.pantalla = "SyntaxError";
-                            //update Pantalla
-                        } finally {
-                            Calculadora.updatePantalla(ca);
-
+                        if (Calculadora.pantalla.equals("Infinity")) {
+                            Calculadora.pantalla = "";
                         }
+                        if (!Calculadora.pantalla.equals("")) {
+                            try {
+                                Calculadora.pantalla = Solver.Compute(equation) + "";
+
+                            } catch (Exception ex) {
+                                Calculadora.pantalla = "SyntaxError";
+                                //update Pantalla
+                            } finally {
+                                Calculadora.updatePantalla(ca);
+
+                            }
+                        }
+
                     }
                 });
-                boton.setBounds((Calculadora.Wboton + 5 )* 3 + 5, 425 - 5 - ((Calculadora.Wboton+5 )* (signos.indexOf(func))), Calculadora.Wboton, Calculadora.Hboton);
+                boton.setBounds((Calculadora.Wboton + 5) * 3 + 5, 425 - 5 - ((Calculadora.Wboton + 5) * (signos.indexOf(func))), Calculadora.Wboton, Calculadora.Hboton);
 
                 break;
             case "ac":
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        if (Calculadora.pantalla.equals("SyntaxError") || Calculadora.pantalla.equals("Infinity")) {
+                            Calculadora.pantalla = "";
+                        }
                         Calculadora.pantalla = "";
                         //update pantalla
                         Calculadora.updatePantalla(ca);
                     }
                 });
-                boton.setBounds((Calculadora.Wboton + 5)* 1 + 5, 425 - 5 - (4 *( Calculadora.Hboton + 5)), Calculadora.Wboton, Calculadora.Hboton);
+                boton.setBounds((Calculadora.Wboton + 5) * 1 + 5, 425 - 5 - (4 * (Calculadora.Hboton + 5)), Calculadora.Wboton, Calculadora.Hboton);
 
                 break;
             case "c":
                 boton.addActionListener(new ActionListener() {
+
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        try{
-                        Calculadora.pantalla = Calculadora.pantalla.substring(0, Calculadora.pantalla.length() - 1);
+                        if (Calculadora.pantalla.equals("SyntaxError") || Calculadora.pantalla.equals("Infinity")) {
+                            Calculadora.pantalla = "";
                         }
-                        catch(Exception errhs){}
+                        try {
+                            Calculadora.pantalla = Calculadora.pantalla.substring(0, Calculadora.pantalla.length() - 1);
+                        } catch (Exception errhs) {
+                        }
                         //update pantalla
                         Calculadora.updatePantalla(ca);
                     }
                 });
-                boton.setBounds((Calculadora.Wboton +5)* 2 + 5, 425 - 5 - (4 * (Calculadora.Hboton+5)), Calculadora.Wboton, Calculadora.Hboton);
+                boton.setBounds((Calculadora.Wboton + 5) * 2 + 5, 425 - 5 - (4 * (Calculadora.Hboton + 5)), Calculadora.Wboton, Calculadora.Hboton);
 
                 break;
             default:
                 boton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        if (Calculadora.pantalla.equals("SyntaxError") || Calculadora.pantalla.equals("Infinity")) {
+                            Calculadora.pantalla = "";
+                        }
                         Calculadora.pantalla += boton.Value;
                         //update pantalla
                         Calculadora.updatePantalla(ca);
@@ -83,11 +99,11 @@ public class FactoryBotonFunctions {
 
                 if (func.equals("+") || func.equals("/") || func.equals("*") || func.equals("-")) {
 
-                    boton.setBounds((Calculadora.Wboton  + 5)* 3 + 5, 425 - 5 - ((Calculadora.Wboton +5)* (signos.indexOf(func))), Calculadora.Wboton, Calculadora.Hboton);
-                        
+                    boton.setBounds((Calculadora.Wboton + 5) * 3 + 5, 425 - 5 - ((Calculadora.Wboton + 5) * (signos.indexOf(func))), Calculadora.Wboton, Calculadora.Hboton);
+
                 } else {
                     if (func.equals(".")) {
-                        boton.setBounds((Calculadora.Wboton +5)* 2 + 5, 425 - 5, Calculadora.Wboton, Calculadora.Hboton);
+                        boton.setBounds((Calculadora.Wboton + 5) * 2 + 5, 425 - 5, Calculadora.Wboton, Calculadora.Hboton);
                     }
                 }
                 break;

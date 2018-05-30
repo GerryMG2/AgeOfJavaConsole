@@ -21,6 +21,10 @@ public class FactoryBotonNumber {
         boton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(Calculadora.pantalla.equals("SyntaxError") || Calculadora.pantalla.equals("Infinity"))
+                {
+                    Calculadora.pantalla = "";
+                }
                 Calculadora.pantalla += boton.Value;
                 //update pantalla
                 Calculadora.updatePantalla(ca);
